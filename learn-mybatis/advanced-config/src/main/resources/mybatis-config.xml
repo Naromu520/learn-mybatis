@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--
+        第一处,用properties标签，告诉mybatis连接数据库的配置信息
+    -->
+    <properties resource="jdbc.properties"/>
+    <!--
+        第二处,用typeAliases标签,给实体类取别名，从而在mybatis范围内不用在resultType等里面写别名,
+        且不区分大小写
+    -->
+    <typeAliases>
+        <package name="com.atguigu.mybatis.pojo"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--
+        第三处用package标签批量指出mapper.xml的位置,批量扫描需要的是包全类名，而不是文件路径.
+        该方法需要保证mapper接口和mapper的xml在同一个包里
+    -->
+    <mappers>
+        <package name="com.learn.mybatis.mapper"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+第一个一致<mapper>标签里的namespace属性里的值与对应的mapper全类名一致，
+全类名是从包名开始的，而不是从根目录开始的，如"com/learn/maybatis/mapper/UserMapper.java"
+-->
+<mapper namespace="com.learn.mybatis.mapper.UserMapper">
+    <!--
+        第二个一致是mapper的方法名与sql标签的id属性的值保持一致
+    -->
+    <!--int insertUser();-->
+    <insert id="insertUser">
+        insert into t_user values(null,'张三','123',23,'女','zhangsan@qq.com')
+    </insert>
+    <!--int deleteUser();-->
+    <delete id="deleteUser">
+        delete from t_user where id = 6
+    </delete>
+    <!--int updateUser();-->
+    <update id="updateUser">
+        update t_user set username = '张三' where id = 5
+    </update>
+    <!--User getUserById();-->
+    <select id="getUserById" resultType="com.learn.mybatis.pojo.User">
+        select * from t_user where id = 2
+    </select>
+</mapper>
