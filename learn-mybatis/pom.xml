@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 父工程独立坐标，和子模块无关 -->
+    <groupId>com.learn.mybatis</groupId>
+    <artifactId>mybatis-aggregate-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- 仅作用：聚合两个子模块，父工程执行mvn会批量构建所有子模块 -->
+    <modules>
+        <module>basepart</module>
+        <module>advanced-config</module>
+    </modules>
+
+    <!-- 可选：统一版本管控（仅做版本记录，子模块不会自动生效，完全不干扰子pom） -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.5.7</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.33</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 注意：这里不写<dependencies>全局依赖，防止自动注入干扰子模块 -->
+    <!-- 不写全局properties，避免覆盖子模块自身JDK/编码配置 -->
+</project>
